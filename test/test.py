@@ -8,33 +8,37 @@ from cocotb.triggers import ClockCycles
 
 @cocotb.test()
 async def test_project(dut):
-    dut._log.info("Start")
 
-    # Set the clock period to 10 us (100 KHz)
     clock = Clock(dut.clk, 10, unit="us")
     cocotb.start_soon(clock.start())
 
     # Reset
-    dut._log.info("Reset")
     dut.ena.value = 1
     dut.ui_in.value = 0
     dut.uio_in.value = 0
     dut.rst_n.value = 0
-    await ClockCycles(dut.clk, 10)
+
+    await ClockCycles(dut.clk, 5)
+
     dut.rst_n.value = 1
 
-    dut._log.info("Test project behavior")
+    # X=1, W=1
+    dut.ui_in.value = 0b00000011
 
-    # Set the input values you want to test.
-    dut.ui_in.value = 20
-    dut.uio_in.value = 30
+    await ClockCycles(dut.clk, 5)
 
-    # Wait for one clock cycle to see the output values
-    await ClockCycles(dut.clk, 1)
+    acc_value = int(dut.uo_out.value)
 
-    # The following assersion is just an example of how to check the output values.
-    # Change it to match the actual expected output of your module:
-    assert dut.uo_out.value == 50
+    dut._log.info(f"Accumulator = {acc_value}")
 
-    # Keep testing the module by changing the input values, waiting for
-    # one or more clock cycles, and asserting the expected output values.
+    assert acc_value >= 4, "Accumulator did not increment"
+
+    # X=0, W=0
+    dut.ui_in.value = 0
+
+    old_acc = int(dut.uo_out.value)
+
+    await ClockCycles(dut.clk, 5)
+
+    assert int(dut.uo_out.value) == old_acc, \
+        "Accumulator changed when inputs were zero"
