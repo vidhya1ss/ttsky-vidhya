@@ -1,5 +1,5 @@
 project:
-  title: "Stochastic MAC Unit"
+  title: "Stochastic MAC Unit."
   author: "V. Vidhya"
   discord: ""
   description: "Simple stochastic multiply accumulate unit using AND-based multiplication and an 8-bit accumulator."
