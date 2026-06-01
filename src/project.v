@@ -45,3 +45,5 @@ module tt_um_example (
     wire _unused = &{ena, uio_in, ui_in[7:2], 1'b0};
 
 endmodule
+
+`default_nettype wire
