@@ -8,13 +8,13 @@ project:
 
   tiles: "1x1"
 
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_smac"
 
   source_files:
     - "project.v"
 
 pinout:
-  # Inputs
+  # Inputs.
   ui[0]: "Stochastic Input X"
   ui[1]: "Stochastic Weight W"
   ui[2]: ""
