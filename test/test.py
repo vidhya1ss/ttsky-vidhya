@@ -25,7 +25,7 @@ async def test_project(dut):
 
     dut._log.info("Test project behavior")
 
-    # Set the input values you want to test
+    # Set the input values you want to test.
     dut.ui_in.value = 20
     dut.uio_in.value = 30
 
