@@ -1,6 +1,6 @@
 {
-    "DESIGN_NAME": "smac",
-    "VERILOG_FILES": "dir::src/smac.v",
+    "DESIGN_NAME": "tt_um_example",
+    "VERILOG_FILES": "dir::src/tt_um_example.v",
     "CLOCK_PORT": "clk",
     "CLOCK_PERIOD": 10,
 
